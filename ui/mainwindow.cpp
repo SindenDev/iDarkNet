@@ -3,6 +3,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsTextItem>
 #include <QFileDialog>
+#include <QStandardPaths>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -10,16 +11,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     QString names_file = "./data/coco.names";
     QString cfg_file = "./cfg/yolov4.cfg";
     QString weights_file = "./model/yolov4.weights";
     m_pDetector = new QDetector(cfg_file, weights_file, names_file, 0, this);
-    connect(m_pDetector, &QDetector::initCompleted, this, [=](){
-        setDetectedImage("person.jpg");
-
-    });
-
+    connect(m_pDetector, &QDetector::initCompleted, this, [=](){setDetectedImage("person.jpg");});
     ui->graphicsView->setScene(new QGraphicsScene(this));
 }
 
@@ -32,8 +28,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    QString file_name = QFileDialog::getOpenFileName(this,
-        tr("Open Image"), "/home/jana", tr("Image Files (*.png *.jpg *.bmp)"));
+    QString file_name = QFileDialog::getOpenFileName(this,tr("Open Image"), QStandardPaths::standardLocations(QStandardPaths::PicturesLocation).first(), tr("Image Files (*.png *.jpg *.bmp)"));
     setDetectedImage(file_name);
 }
 
