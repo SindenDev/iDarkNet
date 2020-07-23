@@ -54,6 +54,20 @@
         </spacer>
        </item>
        <item>
+        <widget class="QPushButton" name="pushButton_ZoomIn">
+         <property name="text">
+          <string>+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_ZoomOut">
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>Thresh</string>

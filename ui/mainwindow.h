@@ -23,6 +23,10 @@ private slots:
 
     void on_pushButton_Detect_clicked();
 
+    void on_pushButton_ZoomIn_clicked();
+
+    void on_pushButton_ZoomOut_clicked();
+
 private:
     Ui::MainWindow *ui;
     QDetector *m_pDetector = nullptr;

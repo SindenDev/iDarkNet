@@ -54,9 +54,11 @@ void MainWindow::setDetectedImage(const QString &file)
             QRectF rect = QRectF(json_result.value("x").toInt(),json_result.value("y").toInt(),
                                  json_result.value("width").toInt(),json_result.value("height").toInt());
             QString label = QString("%1: %2").arg(json_result.value("objectName").toString()).arg(json_result.value("probability").toDouble());
-            ui->graphicsView->scene()->addRect(rect, QPen(color));
+
+            ui->graphicsView->scene()->addRect(rect, QPen(color), QBrush(color, Qt::Dense7Pattern));
             QGraphicsTextItem *text = ui->graphicsView->scene()->addText(label);
-            text->setPos(rect.topLeft());
+            QPointF top_left = rect.topLeft();
+            text->setPos(top_left.x(), top_left.y() - 18);
             text->setDefaultTextColor(color);
         }
     }
@@ -65,4 +67,15 @@ void MainWindow::setDetectedImage(const QString &file)
 void MainWindow::on_pushButton_Detect_clicked()
 {
     setDetectedImage(ui->label_FilePath->text());
+}
+
+
+void MainWindow::on_pushButton_ZoomIn_clicked()
+{
+    ui->graphicsView->scale(1.1, 1.1);
+}
+
+void MainWindow::on_pushButton_ZoomOut_clicked()
+{
+    ui->graphicsView->scale(0.9, 0.9);
 }
