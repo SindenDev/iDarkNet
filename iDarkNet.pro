@@ -1,4 +1,4 @@
-QT       += core gui concurrent
+QT       += core gui concurrent multimedia quick quickcontrols2 virtualkeyboard
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,7 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 DESTDIR = $$PWD/bin
 
-include(3rd/darknet/darknet.pri)
+include($$PWD/3rd/darknet/darknet.pri)
+include ($$PWD/3rd/qtavplayer/qtavplayer.pri)
+
+RESOURCES += qml.qrc
+
 INCLUDEPATH += \
         $$PWD/ui \
         $$PWD/core
